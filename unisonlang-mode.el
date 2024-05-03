@@ -58,6 +58,9 @@
              ;; Handle the unison fold
              (x-fold-regexp "---\\(\n\\|.\\)*")
 
+             ;; documentation block
+             (x-doc-regexp "\\({{\\)\\(\\(?:\n\\|.\\)*?\\)\\(}}\\)")
+
              ;; define several categories of keywords
              ;; symbol keywords
              (x-symbol-keywords '(":" "->"))
@@ -96,6 +99,9 @@
 
         `(
           (,x-fold-regexp . (0 font-lock-comment-face t))
+          (,x-doc-regexp . ((1 font-lock-comment-delimiter-face)
+                            (2 font-lock-doc-face t)
+                            (3 font-lock-comment-delimiter-face)))
           (,x-keywords-full-regexp . font-lock-keyword-face)
           (,x-single-quote-exc-regexp . (2 font-lock-keyword-face))
           (,x-request-regexp . font-lock-preprocessor-face)
